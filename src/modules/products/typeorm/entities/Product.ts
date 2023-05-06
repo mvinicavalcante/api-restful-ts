@@ -1,5 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+//Representação da tabela do BD
+
 @Entity('products')
 export class Product {
   @PrimaryGeneratedColumn('uuid')

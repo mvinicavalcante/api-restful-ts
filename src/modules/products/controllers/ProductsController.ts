@@ -13,7 +13,19 @@ export default class ProductsController {
     //req e res -> Recebe e DEVOLVE, faz a ponte
     const listProducts = new ListProductService();
 
-    const products = listProducts.execute();
+    const products = await listProducts.execute();
+
+    return response.json(products);
+  }
+
+  public async showPrice(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { price } = request.body;
+    const showProduct = new ShowProductService();
+
+    const products = await showProduct.listByPrice({ price });
 
     return response.json(products);
   }
@@ -22,7 +34,7 @@ export default class ProductsController {
     const { id } = request.params;
     const showProduct = new ShowProductService();
 
-    const product = showProduct.execute({ id });
+    const product = await showProduct.execute({ id });
 
     return response.json(product);
   }

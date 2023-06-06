@@ -1,27 +1,36 @@
-import { getCustomRepository } from 'typeorm';
-import { ProductRepository } from '../typeorm/repositories/ProductsRepository';
-import { Product } from '../typeorm/entities/Product';
 import AppError from '@shared/errors/AppError';
+import { getCustomRepository } from 'typeorm';
+import { Product } from '../typeorm/entities/Product';
+import ProductRepository from '../typeorm/repositories/ProductsRepository';
 
 interface IRequest {
   id: string;
+  price: number;
 }
 
 class ShowProductService {
   public async execute({ id }: IRequest): Promise<Product> {
     const productsRepository = getCustomRepository(ProductRepository);
 
-    const product = await productsRepository.findOne({
-      where: {
-        id,
-      },
-    });
+    const product = await productsRepository.findOne(id);
 
     if (!product) {
       throw new AppError('Product not found.');
     }
 
     return product;
+  }
+
+  public async listByPrice({ price }: IRequest): Promise<Product[]> {
+    const productsRepository = getCustomRepository(ProductRepository);
+
+    const products = await productsRepository.findAllByPrice(price);
+
+    if (!products) {
+      throw new AppError('Product not found.');
+    }
+
+    return products;
   }
 }
 

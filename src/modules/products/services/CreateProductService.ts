@@ -1,5 +1,5 @@
 import { getCustomRepository } from 'typeorm';
-import { ProductRepository } from '../typeorm/repositories/ProductsRepository';
+import ProductRepository from '../typeorm/repositories/ProductsRepository';
 import AppError from '@shared/errors/AppError';
 import { Product } from '../typeorm/entities/Product';
 
@@ -26,7 +26,7 @@ class CreateProductService {
       quantity,
     });
     //já passo os parâmetros q não são preenchidos automaticamente (name, price e quantity)
-    //
+    //Com o .save() ele insere o objeto criado no BD
 
     await productsRepository.save(product);
 

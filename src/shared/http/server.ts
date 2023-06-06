@@ -1,10 +1,12 @@
 import 'reflect-metadata';
 import express, { NextFunction, Request, Response } from 'express';
+import 'express-async-errors';
 import cors from 'cors';
 import routes from './routes';
 import AppError from '../../shared/errors/AppError';
 //Já pra puxar o typeorm quando rodar o projeto e colocar tudo pra se conectar
 import '../../shared/typeorm';
+import { errors } from 'celebrate';
 
 const app = express();
 
@@ -13,6 +15,8 @@ app.use(express.json());
 
 //recebendo as rotas
 app.use(routes);
+
+app.use(errors());
 
 //criar um middleware para capturar o erro e tratá-lo com o AppError
 //Esse middleware possui um parâmetro a mais: o error. Justamente por ser um middleware para tratar erros

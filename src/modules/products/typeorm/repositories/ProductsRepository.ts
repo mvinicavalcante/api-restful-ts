@@ -12,15 +12,6 @@ export default class ProductRepository extends Repository<Product> {
 
     return product;
   }
-
-  public async findAllByPrice(price: number): Promise<Product[] | undefined> {
-    const products = await this.find({
-      where: {
-        price,
-      },
-    });
-    return products;
-  }
 }
 
 //repositórios fazem a manipulação(ações) da Entity com o BD

@@ -12,20 +12,7 @@ export default class ProductsController {
     //ListProductService já faz isso, só criar uma instância e chamar
     //req e res -> Recebe e DEVOLVE, faz a ponte
     const listProducts = new ListProductService();
-
     const products = await listProducts.execute();
-
-    return response.json(products);
-  }
-
-  public async showPrice(
-    request: Request,
-    response: Response,
-  ): Promise<Response> {
-    const { price } = request.body;
-    const showProduct = new ShowProductService();
-
-    const products = await showProduct.listByPrice({ price });
 
     return response.json(products);
   }
@@ -33,7 +20,6 @@ export default class ProductsController {
   public async show(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
     const showProduct = new ShowProductService();
-
     const product = await showProduct.execute({ id });
 
     return response.json(product);

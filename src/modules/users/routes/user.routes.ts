@@ -6,6 +6,7 @@ import isAuthenticated from '../middlewares/isAuthenticated';
 const usersRoute = Router();
 const usersController = new UsersController();
 
+//Rota sendo verificada a respeito da sessão (token) do usuário para chamar o controller
 usersRoute.get('/', isAuthenticated, usersController.index);
 
 usersRoute.get('/', usersController.index);

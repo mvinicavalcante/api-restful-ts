@@ -1,6 +1,6 @@
 import productsRouter from '@modules/products/routes/products.routes';
 import sessionsRoute from '@modules/users/routes/session.routes';
-import usersRoute from '@modules/users/routes/user.routes';
+import usersRoute from '@modules/users/routes/users.routes';
 import { Router } from 'express';
 
 const routes = Router();

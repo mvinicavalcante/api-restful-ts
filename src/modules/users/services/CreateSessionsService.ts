@@ -25,7 +25,7 @@ class CreateSessionService {
     if (!user) {
       throw new AppError('Incorrect email/password combination.', 401);
     }
-    //Não o encontrando, retorna esse erro
+    //Não o encontrando, retorna esse erro 401
 
     const passwordConfirmed = await compare(password, user.password);
     //Compara a senha recebida e a senha que está no BD (criptografada)

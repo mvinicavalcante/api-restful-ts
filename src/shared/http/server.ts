@@ -7,10 +7,11 @@ import AppError from '../../shared/errors/AppError';
 //Já pra puxar o typeorm quando rodar o projeto e colocar tudo pra se conectar
 import '../../shared/typeorm';
 import { errors } from 'celebrate';
-
+import uploadConfig from '@config/upload';
 const app = express();
 
 app.use(cors());
+app.use('/files', express.static(uploadConfig.directory)); //rota estática para acesso mais rápido do front às imagens
 app.use(express.json());
 
 //recebendo as rotas

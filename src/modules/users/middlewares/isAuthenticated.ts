@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 import authConfig from '@config/auth';
 
-interface TokenPayload {
+interface ITokenPayload {
   iat: number;
   exp: number;
   sub: string;
@@ -15,7 +15,7 @@ export default function isAuthenticated(
   response: Response,
   next: NextFunction,
 ): void {
-  const authHeader = request.headers.authorization;
+  const authHeader = request.headers.authorization; //pega o token retornado ao iniciar session
 
   if (!authHeader) {
     throw new AppError('JWT Token is missing.');
@@ -29,7 +29,7 @@ export default function isAuthenticated(
   try {
     //verificar se o token foi criado no padrão definido por nós
     const decodedToken = verify(token, authConfig.jwt.secret);
-    const { sub } = decodedToken as TokenPayload;
+    const { sub } = decodedToken as ITokenPayload;
 
     //Ele verifica a validação do token e retorna o usuário após o processo
     request.user = {

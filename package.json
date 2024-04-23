@@ -11,7 +11,7 @@
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Marcos Vinícius Cavalcante Oliveira",
   "license": "ISC",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

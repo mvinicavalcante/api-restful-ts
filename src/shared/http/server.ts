@@ -19,6 +19,12 @@ app.use(routes);
 
 app.use(errors());
 
+app.use(
+  cors({
+    origin: '*',
+  }),
+);
+
 //criar um middleware para capturar o erro e tratá-lo com o AppError
 //Esse middleware possui um parâmetro a mais: o error. Justamente por ser um middleware para tratar erros
 app.use(

@@ -1,4 +1,4 @@
-import { User } from '../typeorm/entities/User';
+import User from '../typeorm/entities/User';
 import { getCustomRepository } from 'typeorm';
 import UsersRepository from '../typeorm/repositories/UsersRepository';
 import AppError from '@shared/errors/AppError';
@@ -30,8 +30,9 @@ class UpdateUserAvatarService {
         await fs.promises.unlink(userAvatarFilePath);
       }
 
-      user.avatar = avatarFilename;
-
+      if (avatarFilename) {
+        user.avatar = avatarFilename;
+      }
       await usersRepository.save(user);
 
       return user;

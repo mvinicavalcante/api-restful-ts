@@ -9,14 +9,21 @@ export default class UsersController {
     return response.json(users);
   }
 
-  public async create(request: Request, response: Response): Promise<Response> {
-    const { name, email, password } = request.body;
-    const createUser = new CreateUserService();
-    const user = await createUser.execute({
-      name,
-      email,
-      password,
-    });
-    return response.json(user);
+  public async create(
+    request: Request,
+    response: Response,
+  ): Promise<Response | unknown> {
+    try {
+      const { name, email, password } = request.body;
+      const createUser = new CreateUserService();
+      const user = await createUser.execute({
+        name,
+        email,
+        password,
+      });
+      return response.json(user);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

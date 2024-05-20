@@ -3,13 +3,11 @@ import ProductsController from '../controllers/ProductsController';
 import { celebrate, Joi, Segments } from 'celebrate';
 
 const productsRouter = Router();
-//Importando o Controller porque já tem o comando/método que será executado para tal rota
+
 const productsController = new ProductsController();
 
 productsRouter.get('/', productsController.index);
 
-//Usar o celebrate para gerenciar o conteúdo que tá sendo enviado pelas requisições
-//Seja pela URL ou pelo Body
 productsRouter.get(
   '/:id',
   celebrate({

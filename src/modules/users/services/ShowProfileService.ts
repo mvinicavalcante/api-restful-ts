@@ -7,7 +7,7 @@ interface IRequest {
   user_id: string;
 }
 
-class ShowPerfilService {
+class ShowProfileService {
   public async execute({ user_id }: IRequest): Promise<User> {
     const userRepository = getCustomRepository(UsersRepository);
     const user = await userRepository.findById(user_id);
@@ -20,4 +20,4 @@ class ShowPerfilService {
   }
 }
 
-export default ShowPerfilService;
+export default ShowProfileService;

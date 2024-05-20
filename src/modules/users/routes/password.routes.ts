@@ -3,11 +3,11 @@ import { celebrate, Joi, Segments } from 'celebrate';
 import ForgotPasswordController from '../controllers/ForgotPasswordController';
 import ResetPasswordController from '../controllers/ResetPasswordController';
 
-const passwordRoute = Router();
+const passwordRouter = Router();
 const forgotPasswordController = new ForgotPasswordController();
 const resetPasswordController = new ResetPasswordController();
 
-passwordRoute.post(
+passwordRouter.post(
   '/forgot',
   celebrate({
     [Segments.BODY]: {
@@ -17,7 +17,7 @@ passwordRoute.post(
   forgotPasswordController.create,
 );
 
-passwordRoute.post(
+passwordRouter.post(
   '/reset',
   celebrate({
     [Segments.BODY]: {
@@ -29,4 +29,4 @@ passwordRoute.post(
   resetPasswordController.create,
 );
 
-export default passwordRoute;
+export default passwordRouter;

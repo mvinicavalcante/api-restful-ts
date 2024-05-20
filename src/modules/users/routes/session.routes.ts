@@ -2,10 +2,10 @@ import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 import SessionsController from '../controllers/SessionsController';
 
-const sessionsRoute = Router();
+const sessionsRouter = Router();
 const sessionsController = new SessionsController();
 
-sessionsRoute.post(
+sessionsRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
@@ -16,6 +16,4 @@ sessionsRoute.post(
   sessionsController.create,
 );
 
-//Pelo body e n pela URL q a rota vai mudar (atributos vindo do body)
-
-export default sessionsRoute;
+export default sessionsRouter;

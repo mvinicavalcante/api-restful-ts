@@ -6,15 +6,14 @@ import UsersController from '../controllers/UsersController';
 import isAuthenticated from '../middlewares/isAuthenticated';
 import UserAvatarController from '../controllers/UserAvatarController';
 
-const usersRoute = Router();
+const usersRouter = Router();
 const usersController = new UsersController();
 const userAvatarController = new UserAvatarController();
 const upload = multer(uploadConfig);
 
-//Rota sendo verificada a respeito da sessão (token) do usuário para chamar o controller
-usersRoute.get('/', isAuthenticated, usersController.index);
+usersRouter.get('/', isAuthenticated, usersController.index);
 
-usersRoute.post(
+usersRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
@@ -26,11 +25,11 @@ usersRoute.post(
   usersController.create,
 );
 
-usersRoute.patch(
+usersRouter.patch(
   '/avatar',
   isAuthenticated,
   upload.single('avatar'),
   userAvatarController.update,
 );
 
-export default usersRoute;
+export default usersRouter;
